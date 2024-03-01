@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import logo from '@/assets/images/logo.png';
-//import profileDefault from '@/assets/images/profile.png';
+import Image from "next/image";
+import logo from "@/assets/images/logo.png";
+import profileDefault from '@/assets/images/profile.png';
 
 const Navbar = () => {
   return (
@@ -35,16 +35,14 @@ const Navbar = () => {
             </button>
           </div>
 
-          <div
-            className="flex flex-1 items-center justify-center md:items-stretch md:justify-start"
-          >
+          <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
             <a className="flex flex-shrink-0 items-center" href="/index.html">
-            <Image className='h-10 w-auto' src={logo} alt='AutoOutlet' />
+              <Image className="h-10 w-auto" src={logo} alt="AutoOutlet" />
 
-              <span className="hidden md:block text-white text-2xl font-bold ml-2"
-                >PropertyPulse</span
-              >
+              <span className="hidden md:block text-white text-2xl font-bold ml-2">
+                AutoOutlet
+              </span>
             </a>
             {/* <!-- Desktop Menu Hidden below md screens --> */}
             <div className="hidden md:ml-6 md:block">
@@ -52,18 +50,21 @@ const Navbar = () => {
                 <a
                   href="/index.html"
                   className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                  >Home</a
                 >
+                  Home
+                </a>
                 <a
                   href="/properties.html"
                   className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                  >Properties</a
                 >
+                  Parts Gallery
+                </a>
                 <a
                   href="/add-property.html"
                   className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                  >Add Property</a
                 >
+                  Choose Parts
+                </a>
               </div>
             </div>
           </div>
@@ -71,19 +72,15 @@ const Navbar = () => {
           {/* <!-- Right Side Menu (Logged Out) --> */}
           <div className="hidden md:block md:ml-6">
             <div className="flex items-center">
-              <button
-                className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-              >
+              <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2">
                 <i className="fa-brands fa-google text-white mr-2"></i>
-                <span>Login or Register</span>
+                <span>Login/Register</span>
               </button>
             </div>
           </div>
 
           {/* <!-- Right Side Menu (Logged In) --> */}
-          <div
-            className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0"
-          >
+          <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
             <a href="messages.html" className="relative group">
               <button
                 type="button"
@@ -100,15 +97,13 @@ const Navbar = () => {
                   aria-hidden="true"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
                   />
                 </svg>
               </button>
-              <span
-                className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full"
-              >
+              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
                 2
                 {/* <!-- Replace with the actual number of notifications --> */}
               </span>
@@ -125,9 +120,9 @@ const Navbar = () => {
                 >
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">Open user menu</span>
-                  <img
+                  <Image
                     className="h-8 w-8 rounded-full"
-                    src="images/profile.png"
+                    src={profileDefault}
                     alt=""
                   />
                 </button>
@@ -148,24 +143,27 @@ const Navbar = () => {
                   role="menuitem"
                   tabIndex="-1"
                   id="user-menu-item-0"
-                  >Your Profile</a
                 >
+                  Your Profile
+                </a>
                 <a
                   href="saved-properties.html"
                   className="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabIndex="-1"
                   id="user-menu-item-2"
-                  >Saved Properties</a
                 >
+                  Saved Properties
+                </a>
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabIndex="-1"
                   id="user-menu-item-2"
-                  >Sign Out</a
                 >
+                  Sign Out
+                </a>
               </div>
             </div>
           </div>
@@ -178,29 +176,29 @@ const Navbar = () => {
           <a
             href="/index.html"
             className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-            >Home</a
           >
+            Home
+          </a>
           <a
             href="/properties.html"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >Properties</a
           >
+            Properties
+          </a>
           <a
             href="/add-property.html"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >Add Property</a
           >
-          <button
-            className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4"
-          >
+            Add Property
+          </a>
+          <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4">
             <i className="fa-brands fa-google mr-2"></i>
             <span>Login or Register</span>
           </button>
         </div>
       </div>
     </nav>
+  );
+};
 
-  )
-}
-
-export default Navbar
+export default Navbar;
