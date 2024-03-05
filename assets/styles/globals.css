@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styles.css or your specific component css file */
+.link-underline-animation {
+    position: relative;
+    display: inline-block; /* Necessary to contain the pseudo-element */
+  }
+
+  .link-underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px; /* Adjust the thickness of the underline */
+    bottom: -5px; /* Adjust the spacing from the text */
+    left: 50%;
+    background-color: white; /* Match your link color or choose another */
+    transition: width 0.3s ease, left 0.3s ease; /* Smooth transition for the animation */
+  }
+
+  .link-underline-animation:hover::after {
+    width: 100%;
+    left: 0;
+  }

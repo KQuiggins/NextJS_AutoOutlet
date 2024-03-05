@@ -5,9 +5,14 @@ import Link from "next/link";
 import logo from "@/assets/images/logo.png";
 import profileDefault from "@/assets/images/profile.png";
 import { FaGoogle } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+
+  const pathname = usePathname();
+
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -55,19 +60,19 @@ const Navbar = () => {
               <div className="flex space-x-2">
                 <Link
                   href="/parts"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                  className="text-white text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out link-underline-animation"
                 >
                   Parts Gallery
                 </Link>
                 <Link
                   href="/parts/add_parts"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                  className="text-white text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out link-underline-animation"
                 >
                   Add Parts
                 </Link>
                 <Link
                   href="/orders"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                  className="text-white text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out link-underline-animation"
                 >
                   Orders
                 </Link>
@@ -123,6 +128,7 @@ const Navbar = () => {
                   id="user-menu-button"
                   aria-expanded="false"
                   aria-haspopup="true"
+                  onClick={(prev) => setProfileMenuOpen((prev) => !prev)}
                 >
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">Open user menu</span>
@@ -135,71 +141,75 @@ const Navbar = () => {
               </div>
 
               {/* <!-- Profile dropdown --> */}
-              <div
-                id="user-menu"
-                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="user-menu-button"
-                tabIndex="-1"
-              >
-                <Link
-                  href="/profile"
-                  className="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
+              {profileMenuOpen ? (
+                <div
+                  id="user-menu"
+                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="user-menu-button"
                   tabIndex="-1"
-                  id="user-menu-item-0"
                 >
-                  Your Profile
-                </Link>
-                <Link
-                  href="/parts/saved"
-                  className="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabIndex="-1"
-                  id="user-menu-item-2"
-                >
-                  Saved Parts
-                </Link>
-                <button
-                  className="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabIndex="-1"
-                  id="user-menu-item-2"
-                >
-                  Sign Out
-                </button>
-              </div>
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 text-sm text-gray-700"
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="user-menu-item-0"
+                  >
+                    Your Profile
+                  </Link>
+                  <Link
+                    href="/parts/saved"
+                    className="block px-4 py-2 text-sm text-gray-700"
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="user-menu-item-2"
+                  >
+                    Saved Parts
+                  </Link>
+                  <button
+                    className="block px-4 py-2 text-sm text-gray-700"
+                    role="menuitem"
+                    tabIndex="-1"
+                    id="user-menu-item-2"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
       </div>
 
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
-      {mobileMenuOpen && (
-        <div id="mobile-menu">
+      {mobileMenuOpen ? (
+        <div id="mobile-menu" className="md:hidden">
           <div className="space-y-1 px-2 pb-3 pt-2">
             <Link
               href="/"
-              className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+              className={`${pathname === '/' ? "link-underline-animation" : ''} text-white block text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out`}
             >
               Home
             </Link>
             <Link
               href="/parts"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              className={`${
+                pathname === "/parts" ? "link-underline-animation" : ""
+              } text-white block text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out`}
             >
-              Shop Parts
+              Shop
             </Link>
             <Link
-              href="/add_parts"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              href="/parts/add_parts"
+              className={`${pathname === '/parts/add_parts' ? "link-underline-animation" : ''} text-white block text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out`}
             >
-              Add Parts
+              Add
             </Link>
             <Link
               href="/orders"
-              className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+              className={`${pathname === '/orders' ? "link-underline-animation" : ''} text-white block text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out`}
             >
               Orders
             </Link>
@@ -209,7 +219,7 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-      )}
+      ) : null}
     </nav>
   );
 };
