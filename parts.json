@@ -1,0 +1,44 @@
+[
+    {
+        "_id": "1",
+        "part_name": "Engine",
+        "description": "High-performance engine for cars",
+        "car": "Tesla Model S",
+        "year": 2022,
+        "seller_name": "John Doe",
+        "seller_location": {
+            "street": "123 Main St",
+            "city": "New York",
+            "state": "NY",
+            "zipcode": "10001"
+        }
+    },
+    {
+        "_id": "2",
+        "part_name": "Transmission",
+        "description": "Automatic transmission for cars",
+        "car": "BMW 3 Series",
+        "year": 2021,
+        "seller_name": "Jane Smith",
+        "seller_location": {
+            "street": "456 Elm St",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zipcode": "90001"
+        }
+    },
+    {
+        "_id": "3",
+        "part_name": "Brakes",
+        "description": "High-performance brakes for cars",
+        "car": "Audi A4",
+        "year": 2020,
+        "seller_name": "Sarah Johnson",
+        "seller_location": {
+            "street": "789 Oak St",
+            "city": "Chicago",
+            "state": "IL",
+            "zipcode": "60601"
+        }
+    }
+]
