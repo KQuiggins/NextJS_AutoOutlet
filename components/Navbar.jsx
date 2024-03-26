@@ -51,7 +51,7 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
             <Link className="flex flex-shrink-0 items-center" href="/">
-              <Image className="h-10 w-auto" src={logo} alt="AutoOutlet" />
+              {/* <Image className="h-10 w-auto" src={logo} alt="AutoOutlet" /> */}
 
               <span className="hidden md:block text-white text-2xl font-bold ml-2">
                 AutoOutlet
@@ -64,7 +64,7 @@ const Navbar = () => {
                   href="/parts"
                   className="text-white text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out link-underline-animation"
                 >
-                  Parts Gallery
+                  Parts Gallery |{" "}
                 </Link>
                 {isAuthenticated ? (
                   <>
@@ -72,7 +72,7 @@ const Navbar = () => {
                       href="/parts/add_parts"
                       className="text-white text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out link-underline-animation"
                     >
-                      Add Parts
+                      Add Parts |{" "}
                     </Link>
                     <Link
                       href="/orders"

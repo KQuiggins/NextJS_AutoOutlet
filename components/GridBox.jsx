@@ -1,5 +1,3 @@
-import React from "react";
-
 const GridBox = ({
   heading,
   backgroundColor = "bg-gray-100",

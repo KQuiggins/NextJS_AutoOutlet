@@ -2,10 +2,12 @@
     {
         "_id": "1",
         "part_name": "Engine",
+        "price": 2000,
         "description": "High-performance engine for cars",
         "car": "Tesla Model S",
         "year": 2022,
         "seller_name": "John Doe",
+        "imageUrl": "images/engine.webp",
         "seller_location": {
             "street": "123 Main St",
             "city": "New York",
@@ -16,10 +18,12 @@
     {
         "_id": "2",
         "part_name": "Transmission",
+        "price": 1000,
         "description": "Automatic transmission for cars",
         "car": "BMW 3 Series",
         "year": 2021,
         "seller_name": "Jane Smith",
+        "imageUrl": "images/transmission.jpg",
         "seller_location": {
             "street": "456 Elm St",
             "city": "Los Angeles",
@@ -30,10 +34,12 @@
     {
         "_id": "3",
         "part_name": "Brakes",
+        "price": 500,
         "description": "High-performance brakes for cars",
         "car": "Audi A4",
         "year": 2020,
         "seller_name": "Sarah Johnson",
+        "imageUrl": "images/brakes.png",
         "seller_location": {
             "street": "789 Oak St",
             "city": "Chicago",

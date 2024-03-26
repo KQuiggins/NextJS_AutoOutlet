@@ -1,6 +1,9 @@
-import React from "react";
+'use client';
+import Button from '@/components/Button';
+import Select from '@/components/Select';
 
 const HeroPage = () => {
+  const items = ['Item 1', 'Item 2', 'Item 3'];
   return (
     <section className="bg-blue-700 py-20 mb-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
@@ -28,28 +31,9 @@ const HeroPage = () => {
             <label htmlFor="part-type" className="sr-only">
               Part Type
             </label>
-            <select
-              id="part-type"
-              className="w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
-            >
-              <option value="All">All Categories</option>
-              <option value="Engine Parts">Engine Parts</option>
-              <option value="Brakes">Brakes</option>
-              <option value="Suspension">Suspension</option>
-              <option value="Transmission">Transmission</option>
-              <option value="Electrical">Electrical Components</option>
-              <option value="Body Parts">Body Parts</option>
-              <option value="Wheels & Tires">Wheels & Tires</option>
-              <option value="Interior Accessories">Interior Accessories</option>
-              <option value="Other">Other</option>
-            </select>
+           <Select items={items} />
           </div>
-          <button
-            type="submit"
-            className="md:ml-4 mt-4 md:mt-0 w-full md:w-auto lg:min-w-[200px] px-4 py-3 rounded-lg bg-gray-700 text-white hover:bg-white focus:outline-none focus:ring focus:ring-white text-sm sm:text-base md:text-lg lg:px-6 lg:py-4 lg:text-xl whitespace-nowrap"
-          >
-            Search Parts
-          </button>
+          <Button>Search</Button>
         </form>
       </div>
     </section>
