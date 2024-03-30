@@ -23,7 +23,7 @@
         "car": "BMW 3 Series",
         "year": 2021,
         "seller_name": "Jane Smith",
-        "imageUrl": "images/transmission.jpg",
+        "imageUrl": "images/engine.webp",
         "seller_location": {
             "street": "456 Elm St",
             "city": "Los Angeles",
@@ -39,12 +39,60 @@
         "car": "Audi A4",
         "year": 2020,
         "seller_name": "Sarah Johnson",
-        "imageUrl": "images/brakes.png",
+        "imageUrl": "images/engine.webp",
         "seller_location": {
             "street": "789 Oak St",
             "city": "Chicago",
             "state": "IL",
             "zipcode": "60601"
+        }
+    },
+    {
+        "_id": "4",
+        "part_name": "Steering Wheel",
+        "price": 750,
+        "description": "Ergonomic steering wheel",
+        "car": "Mercedes-Benz C Class",
+        "year": 2019,
+        "seller_name": "Mike Brown",
+        "imageUrl": "images/engine.webp",
+        "seller_location": {
+            "street": "321 Pine St",
+            "city": "Miami",
+            "state": "FL",
+            "zipcode": "33101"
+        }
+    },
+    {
+        "_id": "5",
+        "part_name": "Alternator",
+        "price": 450,
+        "description": "High-efficiency alternator for reliable power supply",
+        "car": "Ford Focus",
+        "year": 2018,
+        "seller_name": "Emily Wilson",
+        "imageUrl": "images/engine.webp",
+        "seller_location": {
+            "street": "654 Maple St",
+            "city": "Houston",
+            "state": "TX",
+            "zipcode": "77001"
+        }
+    },
+    {
+        "_id": "6",
+        "part_name": "Suspension",
+        "price": 1500,
+        "description": "Advanced suspension system",
+        "car": "Lexus RX",
+        "year": 2022,
+        "seller_name": "Alex Martinez",
+        "imageUrl": "images/engine.webp",
+        "seller_location": {
+            "street": "987 Cedar St",
+            "city": "San Francisco",
+            "state": "CA",
+            "zipcode": "94101"
         }
     }
 ]
