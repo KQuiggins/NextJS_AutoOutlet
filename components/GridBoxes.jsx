@@ -11,7 +11,7 @@ const GridBoxes = () => {
             buttonInfo={{
               text: "Browse Car Parts",
               link: "/parts",
-              backgroundColor: 'bg-black'
+              backgroundColor: 'bg-blue-500'
             }}
 
             >

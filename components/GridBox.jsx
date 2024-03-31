@@ -13,7 +13,7 @@ const GridBox = ({
       </p>
       <a
         href={buttonInfo.link}
-        className={`inline-block ${buttonInfo.backgroundColor} text-white rounded-lg px-4 py-2 hover:opacity-80`}
+        className={`inline-block ${buttonInfo.backgroundColor} text-white rounded-lg hover:opacity-80  border-black bg-[#C4A1FF] px-10 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none ml-4`}
       >
         {buttonInfo.text}
       </a>
