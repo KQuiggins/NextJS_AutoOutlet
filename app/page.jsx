@@ -3,6 +3,7 @@ import GridBoxes from "@/components/GridBoxes";
 import HomeParts from "@/components/HomeParts";
 
 const HomePage = () => {
+  
   return (
     <>
       <HeroPage />
