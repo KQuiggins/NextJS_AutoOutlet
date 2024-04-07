@@ -1,9 +1,9 @@
 [
     {
-
+        
         "part_name": "Engine",
         "price": 2000,
-        "description": "High-performance engine for cars",
+        "description": "High-performance engine",
         "car": "Tesla Model S",
         "year": 2022,
         "seller_name": "John Doe",
@@ -19,7 +19,7 @@
 
         "part_name": "Transmission",
         "price": 1000,
-        "description": "Automatic transmission for cars",
+        "description": "Automatic transmission",
         "car": "BMW 3 Series",
         "year": 2021,
         "seller_name": "Jane Smith",
@@ -35,7 +35,7 @@
 
         "part_name": "Brakes",
         "price": 500,
-        "description": "High-performance brakes for cars",
+        "description": "High-performance brakes",
         "car": "Audi A4",
         "year": 2020,
         "seller_name": "Sarah Johnson",
@@ -52,7 +52,7 @@
         "part_name": "Steering Wheel",
         "price": 750,
         "description": "Ergonomic steering wheel",
-        "car": "Mercedes-Benz C Class",
+        "car": "Mercedes-Benz",
         "year": 2019,
         "seller_name": "Mike Brown",
         "imageUrl": "images/engine.webp",
@@ -67,7 +67,7 @@
 
         "part_name": "Alternator",
         "price": 450,
-        "description": "High-efficiency alternator for reliable power supply",
+        "description": "High-efficiency alternator",
         "car": "Ford Focus",
         "year": 2018,
         "seller_name": "Emily Wilson",
@@ -80,10 +80,10 @@
         }
     },
     {
-       
+
         "part_name": "Suspension",
         "price": 1500,
-        "description": "Advanced suspension system",
+        "description": "Suspension system",
         "car": "Lexus RX",
         "year": 2022,
         "seller_name": "Alex Martinez",
@@ -93,6 +93,70 @@
             "city": "San Francisco",
             "state": "CA",
             "zipcode": "94101"
+        }
+    },
+    {
+
+        "part_name": "Tires",
+        "price": 800,
+        "description": "All-season tires",
+        "car": "Honda Accord",
+        "year": 2022,
+        "seller_name": "Linda Harris",
+        "imageUrl": "images/engine.webp",
+        "seller_location": {
+            "street": "321 Willow St",
+            "city": "Seattle",
+            "state": "WA",
+            "zipcode": "98101"
+        }
+    },
+    {
+
+        "part_name": "Headlights",
+        "price": 300,
+        "description": "LED headlights",
+        "car": "Volkswagen Golf",
+        "year": 2020,
+        "seller_name": "Robert Lee",
+        "imageUrl": "images/engine.webp",
+        "seller_location": {
+            "street": "123 Birch St",
+            "city": "Boston",
+            "state": "MA",
+            "zipcode": "02101"
+        }
+    },
+    {
+
+        "part_name": "Windshield",
+        "price": 400,
+        "description": "Durable windshield",
+        "car": "Toyota Camry",
+        "year": 2021,
+        "seller_name": "Diane Morales",
+        "imageUrl": "images/engine.webp",
+        "seller_location": {
+            "street": "456 Pine St",
+            "city": "Philadelphia",
+            "state": "PA",
+            "zipcode": "19101"
+        }
+    },
+    {
+
+        "part_name": "Battery",
+        "price": 250,
+        "description": "Long-lasting car battery",
+        "car": "Nissan Leaf",
+        "year": 2019,
+        "seller_name": "Gary Young",
+        "imageUrl": "images/engine.webp",
+        "seller_location": {
+            "street": "789 Maple St",
+            "city": "Atlanta",
+            "state": "GA",
+            "zipcode": "30301"
         }
     }
 ]
