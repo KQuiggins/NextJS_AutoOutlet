@@ -1,25 +1,28 @@
 import { Schema, model, models } from "mongoose";
 
-const UserSchema = new Schema({
+const UserSchema = new Schema(
+  {
     email: {
-        type: String,
-        required: [true, "Email is required"],
-        unique: [true, "Email already exists"],
+      type: String,
+      required: [true, "Email is required"],
+      unique: [true, "Email already exists"],
     },
     password: {
-        type: String,
-        required: [true, "Password is required"],
+      type: String,
+      required: [true, "Password is required"],
     },
     image: {
-        type: String,
-
+      type: String,
     },
-    bookmarks: [{
+    bookmarks: [
+      {
         type: Schema.Types.ObjectId,
         ref: "Part",
-    }],
-    
-}, { timestamps: true });
+      },
+    ],
+  },
+  { timestamps: true },
+);
 
 const User = models.User || model("User", UserSchema);
 

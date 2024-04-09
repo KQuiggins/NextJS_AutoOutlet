@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import connectDb from "@/config/db";
 import Part from "@/models/Part";
 
@@ -13,7 +14,7 @@ export const GET = async (request) => {
 
         console.log("GET request received");
 
-        return Response.json(parts);
+        return NextResponse.json(parts);
     } catch (error) {
         console.error("GET request failed", error);
         return new Response("GET request failed", { status: 500 });

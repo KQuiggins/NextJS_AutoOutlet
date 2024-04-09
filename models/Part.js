@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 // Main Parts Schema
-const PartsSchema = new Schema({
+const partsSchema = new Schema({
   part_owner: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -47,6 +47,6 @@ const PartsSchema = new Schema({
 });
 
 
-const Part = models.Part || model("Part", PartsSchema);
+const Part = models.Part || model("Part", partsSchema);
 
-module.exports = Part;
+export default Part;
