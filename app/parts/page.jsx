@@ -1,10 +1,27 @@
 import React from "react";
 import { FaCar, FaMoneyBillWave, FaUser} from 'react-icons/fa';
 import Link from "next/link";
-import parts from "@/parts.json";
 import ImageCard from "@/components/PartsCard";
 
-const PartsPage = () => {
+async function fetchParts() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/parts`);
+
+    if (!res.ok) {
+      throw new Error('An error occurred while fetching the data');
+    }
+
+    return res.json();
+
+  } catch (error) {
+    console.error(error);
+
+  }
+}
+
+const PartsPage = async () => {
+  const parts = await fetchParts();
+
   return (
     <section>
       <div className="container-xl lg:container m-auto">

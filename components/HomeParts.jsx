@@ -1,9 +1,28 @@
-import parts from "@/parts.json";
 import Link from "next/link";
 import ImageCard from "@/components/PartsCard";
 import { FaCar, FaMoneyBillWave, FaUser } from "react-icons/fa";
 
-const HomeParts = () => {
+
+async function fetchParts() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/parts`);
+
+    if (!res.ok) {
+      throw new Error('An error occurred while fetching the data');
+    }
+
+    return res.json();
+
+  } catch (error) {
+    console.error(error);
+
+  }
+}
+
+const HomeParts = async () => {
+
+  const parts = await fetchParts();
+  
   const randomThreeProperties = parts
     .sort(() => 0.5 - Math.random())
     .slice(0, 3);
