@@ -2,14 +2,16 @@ import { NextResponse } from "next/server";
 import connectDb from "@/config/db";
 import Part from "@/models/Part";
 
-// GET /api/parts
-export const GET = async (request) => {
+// GET /api/parts/:id
+export const GET = async (request, { params }) => {
   try {
     await connectDb();
 
-    const parts = await Part.find({});
+    const part = await Part.findById(params.id);
 
-    return NextResponse.json(parts);
+    if (!part) return new NextResponse("Part not found", { status: 404 });
+
+    return NextResponse.json(part);
   } catch (error) {
     console.error("GET request failed", error);
     return new Response("GET request failed", { status: 500 });
