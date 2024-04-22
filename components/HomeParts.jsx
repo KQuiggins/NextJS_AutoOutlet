@@ -1,13 +1,9 @@
-import {fetchParts} from "@/utils/request";
+import { fetchParts } from "@/utils/request";
 import Link from "next/link";
 import ImageCard from "@/components/PartsCard";
 import { FaCar, FaMoneyBillWave, FaUser } from "react-icons/fa";
 
-
-
-
 const HomeParts = async () => {
-
   const parts = await fetchParts();
 
   const randomThreeProperties = parts
@@ -32,24 +28,26 @@ const HomeParts = async () => {
             ) : (
               randomThreeProperties.map((part) => (
                 <div key={part._id}>
-                  <ImageCard imageUrl={part.imageUrl}>
-                    <h2 className="text-lg font-bold">{part.part_name}</h2>
-                    <p>{part.description}</p>
-                    <div className="flex items-center gap-2">
-                      <FaMoneyBillWave />
-                      <span>${part.price}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <FaCar />
-                      <span>
-                        {part.car} {part.year}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <FaUser />
-                      <span>{part.seller_name}</span>
-                    </div>
-                  </ImageCard>
+                  <Link href={`/parts/${part._id}`}>
+                    <ImageCard imageUrl={part.imageUrl}>
+                      <h2 className="text-lg font-bold">{part.part_name}</h2>
+                      <p>{part.description}</p>
+                      <div className="flex items-center gap-2">
+                        <FaMoneyBillWave />
+                        <span>${part.price}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <FaCar />
+                        <span>
+                          {part.car} {part.year}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <FaUser />
+                        <span>{part.seller_name}</span>
+                      </div>
+                    </ImageCard>
+                  </Link>
                 </div>
               ))
             )}
