@@ -7,6 +7,21 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        bg: '#e3dff2',
+        main: '#bd52eb',
+        mainAccent: '#a81be4',
+      },
+      borderRadius: {
+        base: '5px',
+      },
+      boxShadow: {
+        base: '4px 4px 0px 0px rgba(0, 0, 0, 1)',
+      },
+      fontWeight: {
+        base: '500',
+        heading: '700',
+      },
       fontFamily: {
         sans: ["Poppins", "sans-serif"],
       },
