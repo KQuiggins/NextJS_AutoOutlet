@@ -26,7 +26,6 @@ const Navbar = () => {
     setAuthProviders();
   }, []);
 
-  console.log(profileImage);
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -82,7 +81,7 @@ const Navbar = () => {
                 {session ? (
                   <>
                     <Link
-                      href="/parts/add_parts"
+                      href="/parts/add_part"
                       className="text-white text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out link-underline-animation"
                     >
                       Add Parts |{" "}
@@ -187,6 +186,7 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-0"
+                      onClick={() => setProfileMenuOpen(false)}
                     >
                       Your Profile
                     </Link>
@@ -196,6 +196,7 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
+                      onClick={() => setProfileMenuOpen(false)}
                     >
                       Saved Parts
                     </Link>
@@ -242,9 +243,9 @@ const Navbar = () => {
             {session ? (
               <>
                 <Link
-                  href="/parts/add_parts"
+                  href="/parts/add_part"
                   className={`${
-                    pathname === "/parts/add_parts"
+                    pathname === "/parts/add_part"
                       ? "link-underline-animation"
                       : ""
                   } text-white block text-base font-medium hover:text-opacity-75 transition duration-150 ease-in-out`}
