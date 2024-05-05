@@ -1,22 +1,14 @@
-const PartAddForm = () => {
+import { formAction } from "@/app/actions/actions";
+
+
+
+
+const PartAddForm = async () => {
+
   return (
-    <form>
+    <form action={formAction}>
       <h2 className="text-3xl text-center font-semibold mb-6">Add Part Form</h2>
-      <div className="mb-4">
-        <label
-          htmlFor="seller_name"
-          className="block text-gray-700 font-bold mb-2"
-        >
-          Seller Name
-        </label>
-        <input
-          type="text"
-          id="seller_name"
-          name="seller_info.name"
-          className="border rounded w-full py-2 px-3"
-          placeholder="Name"
-        />
-      </div>
+      
 
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2">
@@ -25,7 +17,7 @@ const PartAddForm = () => {
         <input
           type="text"
           id="name"
-          name="part_info.name"
+          name="partName"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="eg. Brakes, Tires, Transmission"
           required
@@ -40,11 +32,38 @@ const PartAddForm = () => {
         </label>
         <textarea
           id="description"
-          name="part_info.description"
+          name="partDescription"
           className="border rounded w-full py-2 px-3"
           rows="4"
           placeholder="Add a description of your part"
         ></textarea>
+      </div>
+      <div className="mb-4">
+        <label
+          htmlFor="carModel"
+          className="block text-gray-700 font-bold mb-2"
+        >
+          Car Model
+        </label>
+        <input
+          type="text"
+          id="carModel"
+          name="carModel"
+          className="border rounded w-full py-2 px-3"
+          placeholder="Enter the car model"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="year" className="block text-gray-700 font-bold mb-2">
+          Car Year
+        </label>
+        <input
+          type="text"
+          id="year"
+          name="carYear"
+          className="border rounded w-full py-2 px-3"
+          placeholder="Enter the year of the car"
+        />
       </div>
       <div className="mb-4">
         <label
@@ -54,9 +73,9 @@ const PartAddForm = () => {
           Part Price
         </label>
         <input
-          type="text"
+          type="number"
           id="part_price"
-          name="part_info.price"
+          name="partPrice"
           className="border rounded w-full py-2 px-3"
           placeholder="Price"
         />
@@ -115,7 +134,7 @@ const PartAddForm = () => {
       <div>
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
-          type="submit"
+
         >
           Add Property
         </button>

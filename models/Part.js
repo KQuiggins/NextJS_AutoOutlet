@@ -23,9 +23,7 @@ const partsSchema = new Schema({
   year: {
     type: Number,
   },
-  seller_name: {
-    type: String,
-  },
+  
 
   imageUrl: {
     type: String,
