@@ -97,14 +97,14 @@ const AddPartsPage = () => {
               <input
                 type="text"
                 id="street"
-                name="location.street"
+                name="street"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="Street"
               />
               <input
                 type="text"
                 id="city"
-                name="location.city"
+                name="city"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="City"
                 required
@@ -112,7 +112,7 @@ const AddPartsPage = () => {
               <input
                 type="text"
                 id="state"
-                name="location.state"
+                name="state"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="State"
                 required
@@ -120,7 +120,7 @@ const AddPartsPage = () => {
               <input
                 type="text"
                 id="zipcode"
-                name="location.zipcode"
+                name="zipcode"
                 className="border rounded w-full py-2 px-3 mb-2"
                 placeholder="Zipcode"
               />

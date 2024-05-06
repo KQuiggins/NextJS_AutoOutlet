@@ -32,7 +32,7 @@ export const formAction = async (formData) => {
       description: formData.get("partDescription") || "",
       car: formData.get("carModel") || "",
       year: formData.get("carYear") || "",
-      imageUrl: formData.get("imageUrl") || "",
+      imageUrl: formData.get("images") || "",
       location: {
         street: formData.get("street") || "",
         city: formData.get("city") || "",
@@ -41,7 +41,7 @@ export const formAction = async (formData) => {
       },
     };
     console.log(partData);
-    console.log(session.user.name);
+    console.log(session.user.id);
 
     // Creating a new part
     const part = new Part(partData);
