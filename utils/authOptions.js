@@ -40,12 +40,14 @@ export const authOptions = {
     },
   },
   // Modifies session object
-  async session({ session }) {
+  async session({ session, token }) {
     // 1. Get user from database
     const user = await User.findOne({ email: session.user.email });
     // 2. Add user id to session
+    session.accessToken = token.accessToken;
+    session.user.id = user.token.id;
     session.user.id = user._id.toString();
-    console.log(session.user.id);
+
     // 3. Return session object
     return session;
   },

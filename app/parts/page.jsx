@@ -8,6 +8,7 @@ import ImageCard from "@/components/PartsCard";
 
 const PartsPage = async () => {
   const parts = await fetchParts();
+  console.log(parts);
 
   return (
     <section>
@@ -25,7 +26,7 @@ const PartsPage = async () => {
             {parts.map((part, index) => (
               <Link key={part._id} href={`/parts/${part._id}`} passHref>
   <div>
-    <ImageCard imageUrl={part.imageUrl}>
+    <ImageCard imageUrl={part.images[0]}>
       <h2 className="text-lg font-bold">{part.part_name}</h2>
       <p>{part.description}</p>
       <div className="flex items-center gap-2">

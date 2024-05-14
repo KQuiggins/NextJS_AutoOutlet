@@ -24,7 +24,7 @@ async function fetchPartById(id) {
     if (!apiDomain) {
       return null;
     }
-    const res = await fetch(`${apiDomain}/parts/${id}`);
+    const res = await fetch(`${apiDomain}/parts/${id}`, { cache: "no-store" });
 
     if (!res.ok) {
       throw new Error("An error occurred while fetching the data");

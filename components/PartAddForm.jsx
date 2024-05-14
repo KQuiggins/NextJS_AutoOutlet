@@ -1,14 +1,21 @@
-import { formAction } from "@/app/actions/actions";
+'use client'
+import { formAction } from "@/app/actions/formAction";
+import SubmitButton from "@/components/SubmitButton";
+import { useRef } from "react";
 
 
-
-
-const PartAddForm = async () => {
-
+const PartAddForm = () => {
+  const ref = useRef(null);
   return (
-    <form action={formAction}>
+    <form
+      ref={ref}
+      action={ formData => {
+        formAction(formData)
+        ref.current?.reset()
+        }}
+
+    >
       <h2 className="text-3xl text-center font-semibold mb-6">Add Part Form</h2>
-      
 
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2">
@@ -36,6 +43,7 @@ const PartAddForm = async () => {
           className="border rounded w-full py-2 px-3"
           rows="4"
           placeholder="Add a description of your part"
+          required
         ></textarea>
       </div>
       <div className="mb-4">
@@ -78,6 +86,7 @@ const PartAddForm = async () => {
           name="partPrice"
           className="border rounded w-full py-2 px-3"
           placeholder="Price"
+          required
         />
       </div>
 
@@ -88,14 +97,15 @@ const PartAddForm = async () => {
         <input
           type="text"
           id="street"
-          name="location.street"
+          name="street"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Street"
+          required
         />
         <input
           type="text"
           id="city"
-          name="location.city"
+          name="city"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="City"
           required
@@ -103,7 +113,7 @@ const PartAddForm = async () => {
         <input
           type="text"
           id="state"
-          name="location.state"
+          name="state"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="State"
           required
@@ -111,9 +121,10 @@ const PartAddForm = async () => {
         <input
           type="text"
           id="zipcode"
-          name="location.zipcode"
+          name="zipcode"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Zipcode"
+          required
         />
       </div>
 
@@ -132,12 +143,7 @@ const PartAddForm = async () => {
       </div>
 
       <div>
-        <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
-
-        >
-          Add Property
-        </button>
+        <SubmitButton />
       </div>
     </form>
   );

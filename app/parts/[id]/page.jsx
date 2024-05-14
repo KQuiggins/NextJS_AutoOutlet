@@ -44,7 +44,7 @@ const PartPage = () => {
     {loading && <Spinner loading={loading}/>}
       {!loading && part && (
         <>
-          <PartHeaderImage image={`/${part.imageUrl}`} />
+          <PartHeaderImage image={part.images[0]} />
           <section>
             <div className="container m-auto py-6 px-6">
               <Link

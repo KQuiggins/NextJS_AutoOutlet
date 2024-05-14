@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthProvider";
 import "@/assets/styles/globals.css";
 
+
 export const metadata = {
   title: "AutoOutlet | Car parts you can trust",
   description:
