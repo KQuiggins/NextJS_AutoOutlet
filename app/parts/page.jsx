@@ -8,8 +8,7 @@ import ImageCard from "@/components/PartsCard";
 
 const PartsPage = async () => {
   const parts = await fetchParts();
-  console.log(parts);
-
+ 
   return (
     <section>
       <div className="container-xl lg:container m-auto">

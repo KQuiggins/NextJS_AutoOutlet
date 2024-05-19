@@ -5,7 +5,7 @@ async function fetchParts() {
     if (!apiDomain) {
       return [];
     }
-    const res = await fetch(`${apiDomain}/parts`);
+    const res = await fetch(`${apiDomain}/parts`,  { cache: 'no-store' });
 
     if (!res.ok) {
       throw new Error("An error occurred while fetching the data");
