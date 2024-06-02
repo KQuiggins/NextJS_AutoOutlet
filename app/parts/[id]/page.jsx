@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { fetchPartById } from "@/utils/request";
 import PartHeaderImage from "@/components/PartHeaderImage";
+import PartImages from "@/components/PartImages";
 import Spinner from "@/components/Spinner";
 
 const PartPage = () => {
@@ -83,22 +84,23 @@ const PartPage = () => {
                     </div>
                   </div>
                 </div>
-                <aside className="space-y-4">
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
+                <div className="flex flex-col items-center justify-center space-y-4">
+                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full">
                     <i className="fas fa-bookmark mr-2"></i> Bookmark Part
                   </button>
-                  <button className="bg-black hover:bg-gray-800 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
+                  <button className="bg-black hover:bg-gray-800 text-white font-bold w-full py-2 px-4 rounded-full mb-4">
                     <i className="fas fa-share mr-2"></i> Share Part
                   </button>
-                  <Link href='/contact'>
-                    <button className="bg-black hover:bg-gray-800 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
+                  <Link href='/contact' className="w-full">
+                    <button className="bg-black hover:bg-gray-800 text-white font-bold w-full py-2 px-4 rounded-full">
                       <i className="fas fa-share mr-2"></i> Contact Seller
                     </button>
                   </Link>
-                </aside>
+                </div>
               </div>
             </div>
           </section>
+          <PartImages images={part.images} />
         </>
       )}
     </>
