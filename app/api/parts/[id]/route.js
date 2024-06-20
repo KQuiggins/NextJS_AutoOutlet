@@ -10,6 +10,7 @@ export const GET = async (request, { params }) => {
     const part = await Part.findById(params.id);
 
     if (!part) return new NextResponse("Part not found", { status: 404 });
+    // console.log(part);
 
     return NextResponse.json(part);
   } catch (error) {
