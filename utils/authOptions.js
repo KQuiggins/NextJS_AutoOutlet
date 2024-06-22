@@ -38,17 +38,16 @@ export const authOptions = {
       // 4. Return true to allow sign in
       return true;
     },
-  },
-  // Modifies session object
-  async session({ session, token }) {
-    // 1. Get user from database
-    const user = await User.findOne({ email: session.user.email });
-    // 2. Add user id to session
-    session.accessToken = token.accessToken;
-    session.user.id = user.token.id;
-    session.user.id = user._id.toString();
+    // Modifies session object
+    async session({ session }) {
+      // 1. Get user from database
+      const user = await User.findOne({ email: session.user.email });
+      //2. Add user id to session
+      
+      session.user.id = user._id.toString();
 
-    // 3. Return session object
-    return session;
+      // 3. Return session object
+      return session;
+    },
   },
 };

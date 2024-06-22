@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -14,30 +14,27 @@ const ProfilePage = () => {
   const profileEmail = session?.user?.email;
 
   const [parts, setParts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserParts = async (userId) => {
       if (!userId) return;
 
-      //setLoading(true);
       console.log("Fetching parts for user ID:", userId);
 
       try {
         const res = await fetch(`/api/parts/user/${userId}`);
         console.log("Fetch response status:", res.status);
-        console.log("Fetch response:", res);
 
         if (res.status === 200) {
           const data = await res.json();
           console.log("Fetched parts data:", data);
           setParts(data);
-          console.log("Parts state after setting:", data);
         } else {
-          console.error("Failed to fetch user parts", res.statusText);
+          console.error("Failed to fetch parts:", res.statusText);
         }
       } catch (error) {
-        console.error("Failed to fetch user parts. Error details:", error);
+        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -52,22 +49,6 @@ const ProfilePage = () => {
   useEffect(() => {
     console.log("Parts state updated:", parts);
   }, [parts]);
-
-  // const handleDeletePart = async (partId) => {
-  //   try {
-  //     const res = await fetch(`/api/parts/${partId}`, {
-  //       method: 'DELETE',
-  //     });
-
-  //     if (res.status === 200) {
-  //       setParts(parts.filter(part => part._id !== partId));
-  //     } else {
-  //       console.error("Failed to delete part");
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to delete part", error);
-  //   }
-  // };
 
   return (
     <section className="bg-blue-50 min-h-screen py-12">
@@ -104,41 +85,44 @@ const ProfilePage = () => {
                   <p>You have no parts!</p>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {parts.map((part) => (
-                      <div key={part._id} className='mb-10 bg-gray-50 p-6 rounded-lg shadow-sm'>
-                        <Link href={`/parts/${part._id}`}>
-                          <Image
-                            className='h-32 w-full rounded-md object-cover'
-                            src={part.images[0]}
-                            alt={part.part_name}
-                            width={500}
-                            height={100}
-                            priority={true}
-                          />
-                        </Link>
-                        <div className='mt-2'>
-                          <p className='text-lg font-semibold'>{part.part_name}</p>
-                          <p className='text-gray-600'>
-                            {part.description}
-                          </p>
-                        </div>
-                        <div className='mt-2'>
-                          <Link
-                            // href={`/parts/${part._id}/edit`}
-                            className='bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600'
-                          >
-                            Edit
+                    {parts.map((part) => {
+                      console.log('Rendering part:', part);
+                      return (
+                        <div key={part._id} className='mb-10 bg-gray-50 p-6 rounded-lg shadow-sm'>
+                          <Link href={`/parts/${part._id}`}>
+                            <Image
+                              className='h-32 w-full rounded-md object-cover'
+                              src={part.images[0]}
+                              alt={part.part_name}
+                              width={500}
+                              height={100}
+                              priority={true}
+                            />
                           </Link>
-                          <button
-                            // onClick={() => handleDeletePart(part._id)}
-                            className='bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600'
-                            type='button'
-                          >
-                            Delete
-                          </button>
+                          <div className='mt-2'>
+                            <p className='text-lg font-semibold'>{part.part_name}</p>
+                            <p className='text-gray-600'>
+                              {part.description}
+                            </p>
+                          </div>
+                          <div className='mt-2'>
+                            <Link
+                              href={`/parts/${part._id}/edit`}
+                              className='bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600'
+                            >
+                              Edit
+                            </Link>
+                            <button
+                              // onClick={() => handleDeletePart(part._id)}
+                              className='bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600'
+                              type='button'
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </>

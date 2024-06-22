@@ -15,7 +15,7 @@ export const GET = async (request, {params}) => {
     }
 
     const parts = await Part.find({part_owner: userId});
-    console.log(parts);
+    // console.log(parts);
 
     return NextResponse.json(parts);
   } catch (error) {
