@@ -1,14 +1,15 @@
-'use client';
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Spinner from "@/components/Spinner";
 import { useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
+import { toast } from 'react-toastify';
 
 const ProfilePage = () => {
   const { data: session, status } = useSession();
-  console.log("Session data:", session);
+
   const profileImage = session?.user?.image;
   const profileName = session?.user?.name;
   const profileEmail = session?.user?.email;
@@ -20,15 +21,12 @@ const ProfilePage = () => {
     const fetchUserParts = async (userId) => {
       if (!userId) return;
 
-      console.log("Fetching parts for user ID:", userId);
-
       try {
         const res = await fetch(`/api/parts/user/${userId}`);
-        console.log("Fetch response status:", res.status);
 
         if (res.status === 200) {
           const data = await res.json();
-          console.log("Fetched parts data:", data);
+
           setParts(data);
         } else {
           console.error("Failed to fetch parts:", res.statusText);
@@ -41,14 +39,39 @@ const ProfilePage = () => {
     };
 
     if (session?.user?.id) {
-      console.log("Session user ID:", session.user.id);
       fetchUserParts(session.user.id);
     }
   }, [session]);
 
-  useEffect(() => {
-    console.log("Parts state updated:", parts);
-  }, [parts]);
+  const handleDeletePart = async (partId) => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this part?'
+    );
+
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(`/api/parts/${partId}`, {
+        method: 'DELETE',
+      });
+
+      if (res.status === 200) {
+        // Remove the property from state
+        const updatedParts = parts.filter(
+          (part) => part._id !== partId
+        );
+
+        setProperties(updatedParts);
+
+        toast.success('Part Deleted');
+      } else {
+        toast.error('Failed to delete part');
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Failed to delete part');
+    }
+  };
 
   return (
     <section className="bg-blue-50 min-h-screen py-12">
@@ -61,8 +84,9 @@ const ProfilePage = () => {
                 className="rounded-full border border-gray-300 shadow-sm"
                 src={profileImage || profileDefault}
                 alt="User"
-                width={200}
-                height={200}
+                width={500}
+                height={100}
+                priority={true}
               />
             </div>
             <div className="md:w-3/4 md:pl-8">
@@ -86,12 +110,15 @@ const ProfilePage = () => {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {parts.map((part) => {
-                      console.log('Rendering part:', part);
+                      console.log("Rendering part:", part);
                       return (
-                        <div key={part._id} className='mb-10 bg-gray-50 p-6 rounded-lg shadow-sm'>
+                        <div
+                          key={part._id}
+                          className="mb-10 bg-gray-50 p-6 rounded-lg shadow-sm"
+                        >
                           <Link href={`/parts/${part._id}`}>
                             <Image
-                              className='h-32 w-full rounded-md object-cover'
+                              className="h-32 w-full rounded-md object-cover"
                               src={part.images[0]}
                               alt={part.part_name}
                               width={500}
@@ -99,23 +126,23 @@ const ProfilePage = () => {
                               priority={true}
                             />
                           </Link>
-                          <div className='mt-2'>
-                            <p className='text-lg font-semibold'>{part.part_name}</p>
-                            <p className='text-gray-600'>
-                              {part.description}
+                          <div className="mt-2">
+                            <p className="text-lg font-semibold">
+                              {part.part_name}
                             </p>
+                            <p className="text-gray-600">{part.description}</p>
                           </div>
-                          <div className='mt-2'>
+                          <div className="mt-2">
                             <Link
                               href={`/parts/${part._id}/edit`}
-                              className='bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600'
+                              className="bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600"
                             >
                               Edit
                             </Link>
                             <button
-                              // onClick={() => handleDeletePart(part._id)}
-                              className='bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600'
-                              type='button'
+                              onClick={() => handleDeletePart(part._id)}
+                              className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
+                              type="button"
                             >
                               Delete
                             </button>
