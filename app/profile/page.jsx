@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 const ProfilePage = () => {
   const { data: session, status } = useSession();
-
+  console.log("Session:", session);
   const profileImage = session?.user?.image;
   const profileName = session?.user?.name;
   const profileEmail = session?.user?.email;
