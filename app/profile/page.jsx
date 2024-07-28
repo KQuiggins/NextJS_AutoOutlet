@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Spinner from "@/components/Spinner";
 import { useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
+import DeleteButton from "@/components/DeleteButton";
 import { toast } from 'react-toastify';
 
 const ProfilePage = () => {
@@ -43,35 +44,35 @@ const ProfilePage = () => {
     }
   }, [session]);
 
-  const handleDeletePart = async (partId) => {
-    const confirmed = window.confirm(
-      'Are you sure you want to delete this part?'
-    );
+  // const handleDeletePart = async (partId) => {
+  //   const confirmed = window.confirm(
+  //     'Are you sure you want to delete this part?'
+  //   );
 
-    if (!confirmed) return;
+  //   if (!confirmed) return;
 
-    try {
-      const res = await fetch(`/api/parts/${partId}`, {
-        method: 'DELETE',
-      });
+  //   try {
+  //     const res = await fetch(`/api/parts/${partId}`, {
+  //       method: 'DELETE',
+  //     });
 
-      if (res.status === 200) {
-        // Remove the property from state
-        const updatedParts = parts.filter(
-          (part) => part._id !== partId
-        );
+  //     if (res.status === 200) {
+  //       // Remove the property from state
+  //       const updatedParts = parts.filter(
+  //         (part) => part._id !== partId
+  //       );
 
-        setProperties(updatedParts);
+  //       setProperties(updatedParts);
 
-        toast.success('Part Deleted');
-      } else {
-        toast.error('Failed to delete part');
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error('Failed to delete part');
-    }
-  };
+  //       toast.success('Part Deleted');
+  //     } else {
+  //       toast.error('Failed to delete part');
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error('Failed to delete part');
+  //   }
+  // };
 
   return (
     <section className="bg-blue-50 min-h-screen py-12">
@@ -139,13 +140,7 @@ const ProfilePage = () => {
                             >
                               Edit
                             </Link>
-                            <button
-                              onClick={() => handleDeletePart(part._id)}
-                              className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
-                              type="button"
-                            >
-                              Delete
-                            </button>
+                            <DeleteButton partId={part?._id.toString()} />
                           </div>
                         </div>
                       );
