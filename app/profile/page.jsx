@@ -133,10 +133,10 @@ const ProfilePage = () => {
                             </p>
                             <p className="text-gray-600">{part.description}</p>
                           </div>
-                          <div className="mt-2">
+                          <div className="mt-2 flex space-x-2">
                             <Link
                               href={`/parts/${part._id}/edit`}
-                              className="bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600"
+                              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                             >
                               Edit
                             </Link>
