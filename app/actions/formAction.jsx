@@ -75,7 +75,7 @@ export const formAction = async (formData) => {
 
 export const deletePart = async (formData) => {
 
-  
+
   const data = {
     partId: formData.get("partId"),
   };
@@ -132,4 +132,5 @@ export const deletePart = async (formData) => {
     console.error("Error deleting part:", error);
     return { error: "Failed to delete part" };
   }
+  revalidatePath('/profile');
 };

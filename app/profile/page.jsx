@@ -44,35 +44,7 @@ const ProfilePage = () => {
     }
   }, [session]);
 
-  // const handleDeletePart = async (partId) => {
-  //   const confirmed = window.confirm(
-  //     'Are you sure you want to delete this part?'
-  //   );
-
-  //   if (!confirmed) return;
-
-  //   try {
-  //     const res = await fetch(`/api/parts/${partId}`, {
-  //       method: 'DELETE',
-  //     });
-
-  //     if (res.status === 200) {
-  //       // Remove the property from state
-  //       const updatedParts = parts.filter(
-  //         (part) => part._id !== partId
-  //       );
-
-  //       setProperties(updatedParts);
-
-  //       toast.success('Part Deleted');
-  //     } else {
-  //       toast.error('Failed to delete part');
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error('Failed to delete part');
-  //   }
-  // };
+  
 
   return (
     <section className="bg-blue-50 min-h-screen py-12">
