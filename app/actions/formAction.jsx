@@ -76,12 +76,11 @@ export const formAction = async (formData) => {
 export const deletePart = async (formData) => {
 
 
-  const data = {
-    partId: formData.get("partId"),
-  };
+
 
 
   try {
+    const partId = await formData.get("partId");
     const sessionUser = await getSessionUser();
 
 
@@ -95,7 +94,7 @@ export const deletePart = async (formData) => {
     await connectDb();
     console.log("Database connected");
 
-    const part = await Part.findById(data.partId);
+    const part = await Part.findById(partId);
     console.log("Found part:", part);
 
     if (!part) {
@@ -126,11 +125,12 @@ export const deletePart = async (formData) => {
     // Proceed with property deletion
     await part.deleteOne();
     console.log("Part Deleted");
+    revalidatePath('/');
 
     return { message: "Part Deleted" };
   } catch (error) {
     console.error("Error deleting part:", error);
     return { error: "Failed to delete part" };
   }
-  revalidatePath('/profile');
+
 };

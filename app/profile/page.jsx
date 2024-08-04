@@ -6,7 +6,7 @@ import Spinner from "@/components/Spinner";
 import { useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
 import DeleteButton from "@/components/DeleteButton";
-import { toast } from 'react-toastify';
+
 
 const ProfilePage = () => {
   const { data: session, status } = useSession();
@@ -44,7 +44,7 @@ const ProfilePage = () => {
     }
   }, [session]);
 
-  
+
 
   return (
     <section className="bg-blue-50 min-h-screen py-12">
