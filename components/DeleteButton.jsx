@@ -1,5 +1,5 @@
 'use client';
-import { deletePart } from "@/app/actions/formAction"
+import { deletePart } from "@/app/actions/deletePart";
 import { toast } from 'react-toastify';
 
 const DeleteButton = ({partId}) => {
@@ -7,7 +7,7 @@ const DeleteButton = ({partId}) => {
     const handleDelete = async (formData) => {
 
 
-       
+
         const response = await deletePart(formData);
         console.log(response);
         if (response.error) {
