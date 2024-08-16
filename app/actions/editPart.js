@@ -4,6 +4,7 @@ import connectDB from '@/config/db';
 import Part from '@/models/Part';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
+import cloudinary from "@/config/cloudinary";
 import { redirect } from 'next/navigation';
 
 async function editPart(partId, formData) {
@@ -27,7 +28,7 @@ async function editPart(partId, formData) {
         description: formData.get('partDescription'),
         car: formData.get('carModel'),
         year: formData.get('carYear'),
-        images: formData.getAll('images').filter((image) => image.name !== ''),
+
         seller_location: {
             street: formData.get('street'),
             city: formData.get('city'),
@@ -36,14 +37,37 @@ async function editPart(partId, formData) {
         },
     };
 
+    const images = formData.getAll('images').filter((image) => image.name !== '');
+
+    if (images.length > 0) {
+        const imagesToUpload = [];
+
+        for (const image of images) {
+            const imageBuffer = await image.arrayBuffer();
+            const imageArray = Array.from(new Uint8Array(imageBuffer));
+            const imageData = Buffer.from(imageArray);
+            const imageBase64 = imageData.toString("base64");
+
+            const result = await cloudinary.uploader.upload(
+                `data:image/png;base64,${imageBase64}`,
+                { folder: "part-images" }
+            );
+
+            imagesToUpload.push(result.secure_url);
+        }
+
+        partData.images = imagesToUpload; // Update images with new Cloudinary URLs
+    }
+
+
     const updatedPart = await Part.findByIdAndUpdate(partId, partData, {
         new: true,
         runValidators: true,
     });
 
-    
 
-    revalidatePath(`/`, layout);
+
+    revalidatePath(`/`, "layout");
 
     redirect(`/parts/${updatedPart._id}`);
 
