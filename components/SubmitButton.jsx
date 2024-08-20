@@ -2,8 +2,7 @@
 import { useFormStatus } from 'react-dom'
 import { Toaster, toast } from 'sonner';
 
-
-const SubmitButton = () => {
+const SubmitButton = ({ buttonText = "Add Part" }) => {
   const { pending } = useFormStatus();
   return (
     <>
@@ -21,9 +20,9 @@ const SubmitButton = () => {
         focus:shadow-outline"
         type="submit"
         aria-disabled={pending}
-        onClick={ () => toast('Part added successfully!')}
+        onClick={() => toast(`${buttonText} successfully!`)}
       >
-        {pending ? "Submitting..." : "Add Part"}
+        {pending ? "Submitting..." : buttonText}
       </button>
     </>
   );

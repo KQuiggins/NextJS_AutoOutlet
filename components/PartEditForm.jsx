@@ -1,16 +1,16 @@
-import React from 'react'
+import SubmitButton from "./SubmitButton"
+import editPart from "@/app/actions/editPart"
 
-const PartEditForm = () => {
+const PartEditForm = ({ part }) => {
+
+  const bindPartId = editPart.bind(null, part._id)
+
   return (
     <form
-      ref={ref}
-      action={ formData => {
-        formAction(formData)
-        ref.current?.reset()
-        }}
 
+      action={bindPartId}
     >
-      <h2 className="text-3xl text-center font-semibold mb-6">Add Part Form</h2>
+      <h2 className="text-3xl text-center font-semibold mb-6">Edit Part Form</h2>
 
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2">
@@ -22,6 +22,7 @@ const PartEditForm = () => {
           name="partName"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="eg. Brakes, Tires, Transmission"
+          defaultValue={part.part_name}
           required
         />
       </div>
@@ -38,6 +39,7 @@ const PartEditForm = () => {
           className="border rounded w-full py-2 px-3"
           rows="4"
           placeholder="Add a description of your part"
+          defaultValue={part.description}
           required
         ></textarea>
       </div>
@@ -54,6 +56,7 @@ const PartEditForm = () => {
           name="carModel"
           className="border rounded w-full py-2 px-3"
           placeholder="Enter the car model"
+          defaultValue={part.car}
         />
       </div>
       <div className="mb-4">
@@ -66,6 +69,7 @@ const PartEditForm = () => {
           name="carYear"
           className="border rounded w-full py-2 px-3"
           placeholder="Enter the year of the car"
+          defaultValue={part.year}
         />
       </div>
       <div className="mb-4">
@@ -81,6 +85,7 @@ const PartEditForm = () => {
           name="partPrice"
           className="border rounded w-full py-2 px-3"
           placeholder="Price"
+          defaultValue={part.price}
           required
         />
       </div>
@@ -95,6 +100,7 @@ const PartEditForm = () => {
           name="street"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Street"
+          defaultValue={part.seller_location.street}
           required
         />
         <input
@@ -103,6 +109,7 @@ const PartEditForm = () => {
           name="city"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="City"
+          defaultValue={part.seller_location.city}
           required
         />
         <input
@@ -111,6 +118,7 @@ const PartEditForm = () => {
           name="state"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="State"
+          defaultValue={part.seller_location.state}
           required
         />
         <input
@@ -119,10 +127,10 @@ const PartEditForm = () => {
           name="zipcode"
           className="border rounded w-full py-2 px-3 mb-2"
           placeholder="Zipcode"
+          defaultValue={part.seller_location.zipcode}
           required
         />
       </div>
-
       <div className="mb-4">
         <label htmlFor="images" className="block text-gray-700 font-bold mb-2">
           Image
@@ -137,8 +145,10 @@ const PartEditForm = () => {
         />
       </div>
 
+
+
       <div>
-        <SubmitButton />
+        <SubmitButton buttonText="Submit Edit"/>
       </div>
     </form>
   )
