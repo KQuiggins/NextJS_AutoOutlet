@@ -1,4 +1,5 @@
 "use client";
+import BookmarkButton from "@/components/BookmarkButton";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -85,9 +86,7 @@ const PartPage = () => {
                   </div>
                 </div>
                 <div className="flex flex-col items-center justify-center space-y-4">
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full">
-                    <i className="fas fa-bookmark mr-2"></i> Bookmark Part
-                  </button>
+                  <BookmarkButton part={part} />
                   <button className="bg-black hover:bg-gray-800 text-white font-bold w-full py-2 px-4 rounded-full mb-4">
                     <i className="fas fa-share mr-2"></i> Share Part
                   </button>

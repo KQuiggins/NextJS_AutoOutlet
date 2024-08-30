@@ -11,8 +11,7 @@ const initialState = {
 };
 
 const AddPartsPage = () => {
-  //const { user: session } = useSession();
-  //const [state, formAction] = useFormState(formSubmit, initialState);
+  
 
   return (
     <section className="bg-blue-50">
