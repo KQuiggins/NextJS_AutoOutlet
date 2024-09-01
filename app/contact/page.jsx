@@ -1,6 +1,6 @@
-import React from "react";
+import { FaPaperPlane } from "react-icons/fa";
 
-const ContactForm = () => {
+const ContactForm = ({ part }) => {
   return (
     <>
       <div className="bg-white p-6 rounded-lg shadow-md">
@@ -68,7 +68,7 @@ const ContactForm = () => {
               class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline flex items-center justify-center"
               type="submit"
             >
-              <i className="fas fa-paper-plane mr-2"></i> Send Message
+              <FaPaperPlane className="mr-2"/> Send Message
             </button>
           </div>
         </form>
