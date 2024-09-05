@@ -1,5 +1,4 @@
 'use server'
-
 import connectDb from "@/config/db";
 import User from "@/models/User";
 import { getSessionUser } from "@/utils/getSessionUser";
