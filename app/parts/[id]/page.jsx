@@ -88,11 +88,12 @@ const PartPage = () => {
                 </div>
                 <div className="flex flex-col items-center justify-center space-y-4">
                   <BookmarkButton part={part} />
-                  <ShareButtons part={part} />
                   <Link href='/contact' className="w-full">
                     <button className="bg-black hover:bg-gray-800 text-white font-bold w-full py-2 px-4 rounded-full">
                       <i className="fas fa-share mr-2"></i> Contact Seller
                     </button>
+                  <ShareButtons part={part} />
+
                   </Link>
                 </div>
               </div>

@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
 
-const Select = ({ items }) => {
+const Select = ({ items, onSelect }) => {
   const [selectedItem, setSelectedItem] = useState(null)
   const [isActiveSelect, setIsActiveSelect] = useState(false)
 
@@ -10,12 +10,13 @@ const Select = ({ items }) => {
     e.stopPropagation();
     setSelectedItem(itemName)
     setIsActiveSelect(false)
+    onSelect(itemName)
   }
 
   return (
     <div className="relative" aria-expanded={isActiveSelect}>
       <button
-        type="button"   
+        type="button"
         onClick={() => {
           setIsActiveSelect(!isActiveSelect)
         }}
