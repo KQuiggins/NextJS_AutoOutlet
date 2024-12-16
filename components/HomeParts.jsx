@@ -29,7 +29,7 @@ const HomeParts = async () => {
               randomThreeProperties.map((part) => (
                 <div key={part._id}>
                   <Link href={`/parts/${part._id}`}>
-                    <ImageCard imageUrl={part.imageUrl}>
+                    <ImageCard imageUrl={part.images}>
                       <h2 className="text-lg font-bold">{part.part_name}</h2>
                       <p>{part.description}</p>
                       <div className="flex items-center gap-2">
