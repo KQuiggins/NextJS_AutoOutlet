@@ -32,7 +32,7 @@ const MessageSchema = new Schema(
             type: String,
             required: [true, "Message is required"],
         },
-        status: {
+        submitted: {
             type: String,
             default: false,
         },
