@@ -1,7 +1,7 @@
 
 'use client'
 
-import { useRouter, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import { useEffect } from "react"
 import { useFormState, useFormStatus } from "react-dom"
 import { addMessage } from "@/app/actions/addMessage"
@@ -9,9 +9,13 @@ import { useSession } from "next-auth/react"
 import { toast } from "react-toastify"
 import { FaPaperPlane } from "react-icons/fa"
 
-function ContactForm({ part }) {
-  const router = useRouter()
+function ContactForm() {
+
   const params = useSearchParams()
+
+  const partId = params.get("partId")
+  const owner = params.get("owner")
+ 
   const { data: session } = useSession()
 
 
@@ -42,8 +46,8 @@ function ContactForm({ part }) {
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h3 className="text-xl font-bold mb-6">Contact Parts Owner</h3>
           <form action={formAction}>
-            <input type="hidden" name="part" id="part" defaultValue={params} />
-            <input type="hidden" name="receiver" id="receiver" defaultValue={part.part_owner} />
+            <input type="hidden" name="part" id="part" defaultValue={partId} />
+            <input type="hidden" name="receiver" id="receiver" defaultValue={owner} />
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                 Name:
