@@ -5,13 +5,13 @@ import Message from "@/models/Message";
 
 
 
-export const addMessage = async (formData) => {
+export const addMessage = async (prevState, formData) => {
   await connectDb();
 
   const sessionUser = await getSessionUser();
 
   if (!sessionUser || !sessionUser.userId) {
-    throw new Error("User ID is required");
+    return Error("User ID is required");
 
   }
 
@@ -19,7 +19,7 @@ export const addMessage = async (formData) => {
 
   const receiver = formData.get('receiver');
 
-  if (userId === receiver) {
+  if (userId.id === receiver) {
     return {error: "You cannot send a message to yourself"};
   }
 
