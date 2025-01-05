@@ -5,17 +5,17 @@ const MessageSchema = new Schema(
         sender: {
             type: Schema.Types.ObjectId,
             ref: "User",
-            required: [true, "Sender is required"],
+            required: true,
         },
         receiver: {
             type: Schema.Types.ObjectId,
             ref: "User",
-            required: [true, "Receiver is required"],
+            required: true,
         },
         part: {
             type: Schema.Types.ObjectId,
             ref: "Part",
-            required: [true, "Part is required"],
+            required: true,
         },
         name: {
             type: String,
@@ -28,12 +28,12 @@ const MessageSchema = new Schema(
         phone: {
             type: String,
         },
-        message: {
+        body: {
             type: String,
             required: [true, "Message is required"],
         },
-        submitted: {
-            type: String,
+        read: {
+            type: Boolean,
             default: false,
         },
     },

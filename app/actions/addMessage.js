@@ -5,7 +5,7 @@ import Message from "@/models/Message";
 
 
 
-export const addMessage = async (prevState, formData) => {
+export const addMessage = async (previousState, formData) => {
   await connectDb();
 
   const sessionUser = await getSessionUser();
@@ -20,21 +20,22 @@ export const addMessage = async (prevState, formData) => {
   const receiver = formData.get('receiver');
 
   if (userId.id === receiver) {
-    return {error: "You cannot send a message to yourself"};
+    return { error: "You cannot send a message to yourself" };
   }
 
   const message = new Message({
     sender: userId,
     receiver,
     part: formData.get('part'),
-    message: formData.get('message'),
+    name: formData.get('name'),
+    body: formData.get('body'),
     email: formData.get('email'),
     phone: formData.get('phone'),
   });
 
   await message.save();
 
-  return {submitted: true}
+  return { submitted: true }
 
 
 

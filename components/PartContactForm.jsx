@@ -1,44 +1,32 @@
 
 'use client'
 
-import { useSearchParams } from "next/navigation"
+
 import { useEffect } from "react"
-import { useFormState, useFormStatus } from "react-dom"
+import { useFormState } from "react-dom"
 import { addMessage } from "@/app/actions/addMessage"
 import { useSession } from "next-auth/react"
 import { toast } from "react-toastify"
 import { FaPaperPlane } from "react-icons/fa"
 
-function ContactForm() {
+
+function ContactForm({ part }) {
 
   const { data: session } = useSession()
-  const params = useSearchParams()
-
-  const partId = params.get("partId")
-  const owner = params.get("owner")
 
 
-
-
-  const { state, formAction } = useFormState(addMessage)
-
-  if (state === "submitted") {
-    return (
-      <p className="text-center text-green-500">
-        Your message has been sent successfully
-      </p>
-    )
-  }
+  const [ state, formAction ] = useFormState(addMessage, {})
 
   useEffect(() => {
-    if (state === "error") {
-      toast.error("An error occurred. Please try again")
-    }
-    if (state === "success") {
-      toast.success("Your message has been sent successfully")
-
-    }
+    if (state.error) toast.error("An error occurred. Please try again")
+    if (state.submitted) toast.success("Your message has been sent successfully")
   }, [state])
+
+  if (state.submitted) {
+    return <p className="text-center text-green-500">Your message has been sent successfully</p>
+  }
+
+
 
   return (
     !session ? (
@@ -51,8 +39,8 @@ function ContactForm() {
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h3 className="text-xl font-bold mb-6">Contact Parts Owner</h3>
         <form action={formAction}>
-          <input type="hidden" name="part" id="part" defaultValue={partId} />
-          <input type="hidden" name="receiver" id="receiver" defaultValue={owner} />
+          <input type="hidden" name="part" id="part" defaultValue={part._id} />
+          <input type="hidden" name="receiver" id="receiver" defaultValue={part.part_owner} />
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
               Name:
@@ -60,6 +48,7 @@ function ContactForm() {
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="name"
+              name="name"
               type="text"
               placeholder="Enter your name"
               required
@@ -72,6 +61,7 @@ function ContactForm() {
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
+              name="email"
               type="email"
               placeholder="Enter your email"
               required
@@ -84,6 +74,7 @@ function ContactForm() {
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="phone"
+              name="phone"
               type="text"
               placeholder="Enter your phone number"
             />
@@ -94,7 +85,8 @@ function ContactForm() {
             </label>
             <textarea
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 h-44 focus:outline-none focus:shadow-outline"
-              id="message"
+              id="body"
+              name="body"
               placeholder="Enter your message"
             ></textarea>
           </div>
