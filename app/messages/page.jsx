@@ -1,5 +1,6 @@
 import connectDb from "@/config/db"
 import Message from "@/models/Message"
+import MessageCard from "@/components/MessageCard"
 import '@/models/Part'
 import { convertToSerializableObject } from "@/utils/convertToSerializableObject"
 import { getSessionUser } from "@/utils/getSessionUser"
@@ -11,9 +12,9 @@ const messagePage = async () => {
 
   const { userId } = sessionUser;
 
-  const readMessages = await Message.find({ receiver: userId, read: true}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'name').lean();
+  const readMessages = await Message.find({ receiver: userId, read: true}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'part_name').lean();
 
-  const unreadMessages = await Message.find({ receiver: userId, read: false}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'name').lean();
+  const unreadMessages = await Message.find({ receiver: userId, read: false}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'part_name').lean();
 
   const messages = [...readMessages, ...unreadMessages].map((messageDoc) => {
     const message = convertToSerializableObject(messageDoc);
@@ -32,14 +33,7 @@ const messagePage = async () => {
               <p>You have no messages</p>
             ) : (
               messages.map((message) => (
-                <div key={message._id} className='border-b pb-4'>
-                  <h2 className='text-xl font-bold'>{message.part.name}</h2>
-                  <p className='text-gray-500'>From: {message.sender.username}</p>
-                  <p className='text-gray-500'>Email: {message.email}</p>
-                  <p className='text-gray-500'>Phone: {message.phone}</p>
-                  <p className='text-gray-500'>{message.body}</p>
-                  <p className='text-gray-500'>Read: {message.read ? 'Yes' : 'No'}</p>
-                </div>
+                <MessageCard key={message._id} message={message} />
               ))
             )}
           </div>
