@@ -16,7 +16,7 @@ const messagePage = async () => {
 
   const unreadMessages = await Message.find({ receiver: userId, read: false}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'part_name').lean();
 
-  const messages = [...readMessages, ...unreadMessages].map((messageDoc) => {
+  const messages = [ ...unreadMessages, ...readMessages].map((messageDoc) => {
     const message = convertToSerializableObject(messageDoc);
     message.sender = convertToSerializableObject(message.sender);
     message.part = convertToSerializableObject(message.part);

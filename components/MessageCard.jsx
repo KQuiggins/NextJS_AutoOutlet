@@ -18,7 +18,7 @@ const MessageCard = ({ message }) => {
     return (
         <div className="relative bg-white p-4 rounded-md shadow-md border-gray-200">
             {!isRead && (
-                <span className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded-md">
+                <span className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-md">
                     New
                 </span>
             )}
