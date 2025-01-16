@@ -1,10 +1,12 @@
 'use client'
 import { useState } from 'react'
 import markMessage from '@/app/actions/markMessage'
+import { deleteMessage } from '@/app/actions/deleteMessages'
 import { toast } from 'react-toastify'
 
 const MessageCard = ({ message }) => {
     const [isRead, setIsRead] = useState(message.read)
+    const [isDeleted, setIsDeleted] = useState(false)
 
     const handleIsRead = async () => {
         try {
@@ -15,6 +17,18 @@ const MessageCard = ({ message }) => {
             toast.error(error.message)
         }
     }
+
+
+    const handleDelete = async () => {
+        try {
+            await deleteMessage(message._id)
+            setIsDeleted(true)
+            toast.success('Message deleted')
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+    
     return (
         <div className="relative bg-white p-4 rounded-md shadow-md border-gray-200">
             {!isRead && (
@@ -48,7 +62,7 @@ const MessageCard = ({ message }) => {
                 <button onClick={handleIsRead} className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 mr-3">
                     {isRead ? 'Mark as Unread' : 'Mark as Read'}
                 </button>
-                <button className="bg-red-500 text-white px-4 py-2 rounded-md mt-4">
+                <button onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 rounded-md mt-4">
                     Delete
                 </button>
             </ul>
