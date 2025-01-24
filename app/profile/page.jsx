@@ -10,7 +10,7 @@ import { convertToSerializableObject } from "@/utils/convertToSerializableObject
 const ProfilePage = async () => {
   await connectDb();
 
-  const sessionUser = await getSessionUser();
+  const sessionUser = await getSessionUser({ cache: 'no-store' });
 
   if (!sessionUser) {
     
@@ -20,7 +20,7 @@ const ProfilePage = async () => {
 
   const { userId } = sessionUser;
 
-  const partDocs = await Part.find({ part_owner: userId }).lean();
+  const partDocs = await Part.find({ part_owner: userId }).lean().cache('no-store');
   const parts = partDocs.map(convertToSerializableObject);
   console.log(parts);
 

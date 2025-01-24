@@ -8,7 +8,7 @@ import { getSessionUser } from "@/utils/getSessionUser"
 const messagePage = async () => {
   connectDb();
 
-  const sessionUser = await getSessionUser();
+  const sessionUser = await getSessionUser({ cache: 'no-store' });
 
   if (!sessionUser) {
     
@@ -17,9 +17,9 @@ const messagePage = async () => {
 
   const { userId } = sessionUser;
 
-  const readMessages = await Message.find({ receiver: userId, read: true}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'part_name').lean();
+  const readMessages = await Message.find({ receiver: userId, read: true}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'part_name').lean().cache('no-store');
 
-  const unreadMessages = await Message.find({ receiver: userId, read: false}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'part_name').lean();
+  const unreadMessages = await Message.find({ receiver: userId, read: false}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'part_name').lean().cache('no-store');
 
   const messages = [ ...unreadMessages, ...readMessages].map((messageDoc) => {
     const message = convertToSerializableObject(messageDoc);

@@ -9,7 +9,7 @@ const SavedParts = async () => {
     await connectDb()
 
 
-    const sessionUser = await getSessionUser();
+    const sessionUser = await getSessionUser({ cache: 'no-store' });
 
     if (!sessionUser) {
       
@@ -18,11 +18,7 @@ const SavedParts = async () => {
 
     const { userId } = sessionUser;
 
-    const { bookmarks } = await User.findById(userId).populate("bookmarks")
-
-
-
-
+    const { bookmarks } = await User.findById(userId).populate("bookmarks").lean().cache('no-store');
 
     return (
         <section>
