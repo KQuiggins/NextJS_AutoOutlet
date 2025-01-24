@@ -6,14 +6,23 @@ import { FaCar, FaMoneyBillWave, FaUser } from "react-icons/fa"
 import { getSessionUser } from "@/utils/getSessionUser"
 
 const SavedParts = async () => {
-    const { userId } = await getSessionUser()
+    await connectDb()
+
+
+    const sessionUser = await getSessionUser();
+
+    if (!sessionUser) {
+      
+      return <p>You must be logged in to view saved parts.</p>;
+    }
+
+    const { userId } = sessionUser;
 
     const { bookmarks } = await User.findById(userId).populate("bookmarks")
 
-    console.log(bookmarks);
 
 
-    await connectDb()
+
 
     return (
         <section>

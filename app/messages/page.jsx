@@ -10,6 +10,11 @@ const messagePage = async () => {
 
   const sessionUser = await getSessionUser();
 
+  if (!sessionUser) {
+    
+    return <p>You must be logged in to view messages.</p>;
+  }
+
   const { userId } = sessionUser;
 
   const readMessages = await Message.find({ receiver: userId, read: true}).sort({ createdAt: -1 }).populate('part').populate('sender', 'username').populate('part', 'part_name').lean();

@@ -11,11 +11,14 @@ const ProfilePage = async () => {
   await connectDb();
 
   const sessionUser = await getSessionUser();
-  const { userId } = sessionUser;
 
-  if (!userId) {
-    throw new Error('User ID is required');
+  if (!sessionUser) {
+    
+
+    return <p>You must be logged in to view your profile.</p>;
   }
+
+  const { userId } = sessionUser;
 
   const partDocs = await Part.find({ part_owner: userId }).lean();
   const parts = partDocs.map(convertToSerializableObject);
