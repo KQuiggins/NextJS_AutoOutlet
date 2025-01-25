@@ -12,17 +12,13 @@ const SavedParts = async () => {
     const sessionUser = await getSessionUser();
 
     if (!sessionUser) {
-      
+
       return <p>You must be logged in to view saved parts.</p>;
     }
 
     const { userId } = sessionUser;
 
-    const { bookmarks } = await User.findById(userId).populate("bookmarks")
-
-
-
-
+    const { bookmarks } = await User.findById(userId).populate("bookmarks").lean();
 
     return (
         <section>

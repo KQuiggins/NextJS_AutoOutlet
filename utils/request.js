@@ -1,7 +1,7 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
 async function fetchParts() {
-  try {
+
     if (!apiDomain) {
       return [];
     }
@@ -12,15 +12,12 @@ async function fetchParts() {
     }
 
     return res.json();
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  
 }
 
 // Fetch a single part by id
 async function fetchPartById(id) {
-  try {
+
     if (!apiDomain) {
       return null;
     }
@@ -31,10 +28,7 @@ async function fetchPartById(id) {
     }
 
     return res.json();
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
+
 }
 
 export { fetchParts, fetchPartById };

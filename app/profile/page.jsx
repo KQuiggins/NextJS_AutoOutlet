@@ -13,7 +13,7 @@ const ProfilePage = async () => {
   const sessionUser = await getSessionUser();
 
   if (!sessionUser) {
-    
+
 
     return <p>You must be logged in to view your profile.</p>;
   }
@@ -22,7 +22,7 @@ const ProfilePage = async () => {
 
   const partDocs = await Part.find({ part_owner: userId }).lean();
   const parts = partDocs.map(convertToSerializableObject);
-  console.log(parts);
+  
 
   return (
     <section className="bg-blue-50 min-h-screen py-12">

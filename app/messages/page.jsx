@@ -11,7 +11,7 @@ const messagePage = async () => {
   const sessionUser = await getSessionUser();
 
   if (!sessionUser) {
-    
+
     return <p>You must be logged in to view messages.</p>;
   }
 
