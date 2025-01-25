@@ -10,19 +10,19 @@ import { convertToSerializableObject } from "@/utils/convertToSerializableObject
 const ProfilePage = async () => {
   await connectDb();
 
-  const sessionUser = await getSessionUser({ cache: 'no-store' });
+  const sessionUser = await getSessionUser();
 
   if (!sessionUser) {
-    
+
 
     return <p>You must be logged in to view your profile.</p>;
   }
 
   const { userId } = sessionUser;
 
-  const partDocs = await Part.find({ part_owner: userId }).lean().cache('no-store');
+  const partDocs = await Part.find({ part_owner: userId }).lean();
   const parts = partDocs.map(convertToSerializableObject);
-  console.log(parts);
+  
 
   return (
     <section className="bg-blue-50 min-h-screen py-12">

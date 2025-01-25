@@ -9,16 +9,16 @@ const SavedParts = async () => {
     await connectDb()
 
 
-    const sessionUser = await getSessionUser({ cache: 'no-store' });
+    const sessionUser = await getSessionUser();
 
     if (!sessionUser) {
-      
+
       return <p>You must be logged in to view saved parts.</p>;
     }
 
     const { userId } = sessionUser;
 
-    const { bookmarks } = await User.findById(userId).populate("bookmarks").lean().cache('no-store');
+    const { bookmarks } = await User.findById(userId).populate("bookmarks").lean();
 
     return (
         <section>
